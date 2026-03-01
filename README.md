@@ -42,8 +42,17 @@ SymfoPop és una aplicació web de mercat de segona mà construïda amb **Symfon
    php -S localhost:8000 -t public
    ```
 
-## 🎥 Vídeo Demostratiu
-Trobaràs el guió detallat per a la presentació al fitxer `gui_video_complet.md`.
+## 📎 Enllaços Directes del Projecte
+Per facilitar la correcció i l'explicació al vídeo, aquí tens els enllaços directes a les parts clau:
+
+| Secció | Enllaç |
+| :--- | :--- |
+| **📁 Entitats** | [src/Entity/](https://github.com/paunieto23/Symfony-Project/tree/main/src/Entity) |
+| **🎮 Controladors** | [src/Controller/](https://github.com/paunieto23/Symfony-Project/tree/main/src/Controller) |
+| **📝 Formularis** | [src/Form/](https://github.com/paunieto23/Symfony-Project/tree/main/src/Form) |
+| **🎨 Vistes** | [templates/](https://github.com/paunieto23/Symfony-Project/tree/main/templates) |
+| **🔒 Seguretat** | [security.yaml](https://github.com/paunieto23/Symfony-Project/blob/main/config/packages/security.yaml) |
+| **📦 Fixtures** | [src/DataFixtures/](https://github.com/paunieto23/Symfony-Project/tree/main/src/DataFixtures) |
 
 ---
-*Projecte desenvolupat com a part del mòdul de Servidor.*
+
