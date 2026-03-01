@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_product_index') }}">Productes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4 text-center">
+                {% if product.image %}
+                    <img src="{{ product.image }}" class="card-img-top rounded" alt="{{ product.title }}" style="max-height: 500px; object-fit: contain; background-color: #f8f9fa;">
+                {% endif %}
+                <div class="card-body text-start p-4">
+                    <h1 class="card-title fw-bold mb-3">{{ product.title }}</h1>
+                    <hr>
+                    <h4 class="fw-bold text-primary mb-3">Descripció</h4>
+                    <p class="card-text fs-5" style="white-space: pre-line;">{{ product.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body p-4">
+                    <h2 class="fw-bold text-primary mb-3">{{ product.price|number_format(2, ',', '.') }}€</h2>
+                    <hr>
+                    <div class="mb-3">
+                        <small class="text-muted d-block uppercase mb-1">Venedor</small>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+                                {{ product.owner.name|first|upper }}
+                            </div>
+                            <span class="fw-bold fs-5">{{ product.owner.name }}</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <small class="text-muted d-block uppercase mb-1">Publicat el</small>
+                        <span class="fs-6">{{ product.createdAt|date('d F, Y') }}</span>
+                    </div>
+
+                    {% if app.user == product.owner %}
+                        <div class="d-grid gap-2">
+                            <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i> Editar Producte
+                            </a>
+                            <form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Estàs segur que vols eliminar aquest producte?');" style="display:inline-block">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                                <button class="btn btn-danger w-100">Eliminar Producte</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" disabled>Contactar amb el venedor</button>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <a href="{{ path('app_product_index') }}" class="btn btn-link text-decoration-none px-0">
+                &larr; Tornar al llistat
+            </a>
+        </div>
+    </div>
+{% endblock %}
